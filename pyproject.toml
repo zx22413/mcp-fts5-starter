@@ -33,6 +33,11 @@ dependencies = [
     "mcp>=1.0",
 ]
 
+[project.optional-dependencies]
+# Chinese word-segmentation pre-tokenizer. Lifts recall on CJK-heavy corpora;
+# unnecessary for English/Latin text. Opt-in: pip install mcp-fts5-starter[jieba]
+jieba = ["jieba>=0.42"]
+
 [project.scripts]
 mcp-fts5-starter = "mcp_fts5_starter.cli:main"
 

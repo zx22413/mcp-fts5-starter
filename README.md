@@ -2,6 +2,7 @@
 
 > Drop-in MCP server template with SQLite FTS5 search backend. ~300 lines, no vector DB, no embedding API, runs on a Pi.
 
+[![test](https://github.com/zx22413/mcp-fts5-starter/actions/workflows/test.yml/badge.svg)](https://github.com/zx22413/mcp-fts5-starter/actions/workflows/test.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](#status)
 [![Python](https://img.shields.io/badge/python-3.11+-blue)](pyproject.toml)
@@ -105,7 +106,7 @@ See [`docs/architecture.md`](docs/architecture.md) for the design pillars (FTS5-
 - [x] 4. Sample corpus + one-command demo (`scripts/build-sample.py`)
 - [x] 5. Architecture doc — [`docs/architecture.md`](docs/architecture.md)
 - [x] 6. [`examples/`](examples/) — Claude Code config + raw JSON-RPC over stdio
-- [ ] 7. CI workflows (test + publish)
+- [x] 7. CI workflows (test on push/PR × py3.11/3.12/3.13; publish on release via OIDC)
 - [ ] 8. v0.1.0 release + blog post
 
 ## License

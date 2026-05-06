@@ -1,0 +1,68 @@
+[project]
+name = "mcp-fts5-starter"
+version = "0.1.0"
+description = "Drop-in MCP server template with SQLite FTS5 search backend. ~300 lines, no vector DB, no embedding API, runs on a Pi."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "LBDog" }]
+requires-python = ">=3.11"
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "fts5",
+    "sqlite",
+    "search",
+    "claude",
+    "starter",
+    "template",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Text Processing :: Indexing",
+    "Topic :: Database",
+]
+dependencies = [
+    "mcp>=1.0",
+]
+
+[project.scripts]
+mcp-fts5-starter = "mcp_fts5_starter.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/zx22413/mcp-fts5-starter"
+Repository = "https://github.com/zx22413/mcp-fts5-starter"
+Documentation = "https://github.com/zx22413/mcp-fts5-starter/blob/main/README.md"
+Changelog = "https://github.com/zx22413/mcp-fts5-starter/blob/main/CHANGELOG.md"
+Issues = "https://github.com/zx22413/mcp-fts5-starter/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_fts5_starter"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"

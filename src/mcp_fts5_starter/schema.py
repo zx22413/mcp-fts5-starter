@@ -26,8 +26,17 @@ BM25_WEIGHTS = "0, 10, 5, 1, 8, 0, 0"
 
 
 def connect(db_path: str | Path) -> sqlite3.Connection:
-    """Open a SQLite connection and ensure the schema exists."""
+    """Open a SQLite connection and ensure the schema exists.
+
+    Sets WAL mode and ``synchronous=NORMAL`` — the modern SQLite defaults
+    for read-heavy applications. WAL lets concurrent readers proceed
+    while a writer is active; ``NORMAL`` is durable across crashes but
+    not across power loss, which is the correct trade-off for a search
+    index you can always rebuild from disk.
+    """
     conn = sqlite3.connect(str(db_path))
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
     _create_tables(conn)
     return conn
 

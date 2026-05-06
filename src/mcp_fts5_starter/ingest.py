@@ -120,13 +120,17 @@ def sync(
             doc_type=doc.doc_type,
             created=doc.created,
             mtime=doc.mtime,
+            commit=False,
         )
         updated += 1
 
     deleted = 0
     for stale in set(known) - seen:
-        db.delete(stale)
+        db.delete(stale, commit=False)
         deleted += 1
+
+    # Single commit at the end — turns N fsyncs into 1.
+    db.commit()
 
     stats = SyncStats(
         total=len(seen), updated=updated, skipped=skipped, deleted=deleted, failed=failed

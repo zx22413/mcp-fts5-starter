@@ -91,9 +91,10 @@ For a hosted deployment, swap stdio for `sse` or `streamable-http`:
 mcp-fts5-starter serve --transport sse --host 0.0.0.0 --port 8765
 ```
 
-## Architecture
+## Architecture & benchmarks
 
-See [`docs/architecture.md`](docs/architecture.md) for the design pillars (FTS5-first, embeddings opt-in, generic schema/tools, incremental sync), what didn't survive extraction from the upstream project, and a comparison table for when BM25 / hybrid / hosted vector DB each makes sense.
+- [`docs/architecture.md`](docs/architecture.md) — design pillars (FTS5-first, embeddings opt-in, generic schema/tools, incremental sync), what didn't survive extraction from the upstream project, and a comparison table for when BM25 / hybrid / hosted vector DB each makes sense.
+- [`docs/benchmark.md`](docs/benchmark.md) — reproducible benchmark at 100 / 1,000 / 10,000 docs, plus the perf bug it surfaced.
 
 ## Examples
 

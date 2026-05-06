@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - HTTP transports for hosted deployments. `mcp-fts5-starter serve --transport sse|streamable-http [--host H] [--port P]` binds a TCP listener instead of stdio. stdio remains the default for local clients (Claude Code, Claude Desktop). Built on FastMCP's native transport support — no new dependencies.
+- `docs/benchmark.md` — reproducible synthetic-corpus benchmark at 100 / 1k / 10k docs with index time, query latency p50/p95/p99, DB size, and peak Python heap. `scripts/benchmark.py` is the runner.
+
+### Changed
+
+- **Ingest is ~2× faster.** `SearchDB.upsert` and `delete` gained a `commit` keyword (default `True`); `ingest.sync` and `rebuild` now batch a single commit at the end of the loop instead of fsync-per-document. Surfaced by the new benchmark — was the largest measured cost on Windows NTFS.
+- `schema.connect` enables `PRAGMA journal_mode=WAL` and `PRAGMA synchronous=NORMAL`. Modern SQLite defaults for read-heavy applications; the right trade-off for a search index that can always be rebuilt from disk.
 
 ## [0.1.0] - 2026-05-07
 

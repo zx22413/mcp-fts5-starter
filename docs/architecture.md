@@ -109,7 +109,7 @@ The result is roughly 3x smaller (~700 lines of source vs. ~1700 in the upstream
 | Runs on a Pi | Yes | Yes (small embedder) | No |
 | Vendor lock-in | None | Whatever provider you wire | Yes |
 
-Numbers are intentionally absent from this table. Recall and latency depend so heavily on corpus and query shape that fabricated benchmarks would mislead more than help. When `v0.1.0` ships, a real benchmark on `data/sample/` plus a larger reproducible fixture will land in `docs/benchmark.md`.
+Numbers are intentionally absent from this table. Recall and latency depend so heavily on corpus and query shape that any single number would mislead at least as often as it helped. See [`benchmark.md`](benchmark.md) for a reproducible synthetic-corpus benchmark with index time, query latency, and memory at 100 / 1,000 / 10,000 docs.
 
 ## When to outgrow the starter
 

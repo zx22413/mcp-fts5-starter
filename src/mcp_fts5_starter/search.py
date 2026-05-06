@@ -80,11 +80,16 @@ class SearchDB:
         doc_type: str = "",
         created: str = "",
         mtime: float | None = None,
+        commit: bool = True,
     ) -> None:
         """Insert or replace a single document.
 
         ``tags`` is a free-form string — space- or pipe-delimited works fine.
         ``mtime`` is optional metadata used by ingest for incremental syncs.
+
+        Set ``commit=False`` when calling in a tight loop and call
+        :meth:`commit` once at the end. The ingest pipeline does this so
+        a 10k-doc rebuild costs one fsync, not 10k.
         """
         tok = self._tokenize
         self.conn.execute("DELETE FROM notes_fts WHERE path = ?", (path,))
@@ -118,11 +123,17 @@ class SearchDB:
                         (path, vec_to_blob(vectors[0])),
                     )
 
-        self.conn.commit()
+        if commit:
+            self.conn.commit()
 
-    def delete(self, path: str) -> None:
+    def delete(self, path: str, *, commit: bool = True) -> None:
         for table in ("notes_fts", "notes_meta", "notes_display", "notes_vec"):
             self.conn.execute(f"DELETE FROM {table} WHERE path = ?", (path,))
+        if commit:
+            self.conn.commit()
+
+    def commit(self) -> None:
+        """Flush pending writes. Call after a batch of ``upsert(..., commit=False)``."""
         self.conn.commit()
 
     def known_paths(self) -> dict[str, float]:

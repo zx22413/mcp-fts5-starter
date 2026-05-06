@@ -1,5 +1,8 @@
 # A boring middle-ground search backend for Claude
 
+> English | [繁體中文](launch.zh-TW.md)
+
+
 Most "build a RAG over your notes" tutorials I've read in the last year reach for the same stack: an embedding model, a vector database, and 500MB of Docker images. For a personal corpus of a few thousand markdown files served to one user from one machine, that's overkill — and the operational cost lives forever after the tutorial is over.
 
 I just released [`mcp-fts5-starter`](https://github.com/zx22413/mcp-fts5-starter) v0.1.0 — a drop-in MCP server template that uses SQLite FTS5 for full-text search instead. Three hundred lines of source, no separate service, runs on a Pi. Claude Code talks to it the moment you `pip install`.

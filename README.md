@@ -84,9 +84,13 @@ MCP_FTS5_CORPUS=data/sample MCP_FTS5_DB=data/sample/index.db \
   mcp-fts5-starter serve
 ```
 
+## Architecture
+
+See [`docs/architecture.md`](docs/architecture.md) for the design pillars (FTS5-first, embeddings opt-in, generic schema/tools, incremental sync), what didn't survive extraction from the upstream project, and a comparison table for when BM25 / hybrid / hosted vector DB each makes sense.
+
 ## Status
 
-🚧 **Alpha.** Core indexer + 4 MCP tools + sample corpus are in. Architecture doc, MCP-client config example, and CI are still to do — see [ROADMAP](#roadmap) below.
+🚧 **Alpha.** Core indexer + 4 MCP tools + sample corpus + architecture doc are in. MCP-client config example, CI, and the v0.1.0 release are next — see [ROADMAP](#roadmap) below.
 
 ## Roadmap to v0.1
 
@@ -94,7 +98,7 @@ MCP_FTS5_CORPUS=data/sample MCP_FTS5_DB=data/sample/index.db \
 - [x] 2. Generic MCP tool layer (`search`, `list`, `read`, `index`)
 - [x] 3. Generic FTS5 schema with BM25 tuning notes
 - [x] 4. Sample corpus + one-command demo (`scripts/build-sample.py`)
-- [ ] 5. Architecture doc — "Why MCP + FTS5 beats vector DB for small corpora"
+- [x] 5. Architecture doc — [`docs/architecture.md`](docs/architecture.md)
 - [ ] 6. `examples/` — Claude Code config + curl usage
 - [ ] 7. CI workflows (test + publish)
 - [ ] 8. v0.1.0 release + blog post

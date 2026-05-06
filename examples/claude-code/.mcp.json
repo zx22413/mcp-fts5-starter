@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fts5-starter": {
+      "command": "mcp-fts5-starter",
+      "args": ["serve"],
+      "env": {
+        "MCP_FTS5_CORPUS": "${workspaceFolder}/data/sample",
+        "MCP_FTS5_DB": "${workspaceFolder}/data/sample/index.db"
+      }
+    }
+  }
+}

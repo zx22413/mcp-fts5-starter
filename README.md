@@ -2,9 +2,9 @@
 
 > Drop-in MCP server template with SQLite FTS5 search backend. ~300 lines, no vector DB, no embedding API, runs on a Pi.
 
+[![PyPI](https://img.shields.io/pypi/v/mcp-fts5-starter?color=blue)](https://pypi.org/project/mcp-fts5-starter/)
 [![test](https://github.com/zx22413/mcp-fts5-starter/actions/workflows/test.yml/badge.svg)](https://github.com/zx22413/mcp-fts5-starter/actions/workflows/test.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Status](https://img.shields.io/badge/status-alpha-orange)](#status)
 [![Python](https://img.shields.io/badge/python-3.11+-blue)](pyproject.toml)
 
 ## The problem
@@ -96,7 +96,7 @@ See [`docs/architecture.md`](docs/architecture.md) for the design pillars (FTS5-
 
 ## Status
 
-🚧 **Alpha.** Core indexer + 4 MCP tools + sample corpus + architecture doc are in. MCP-client config example, CI, and the v0.1.0 release are next — see [ROADMAP](#roadmap) below.
+✅ **v0.1.0 shipped** ([PyPI](https://pypi.org/project/mcp-fts5-starter/) · [GitHub Release](https://github.com/zx22413/mcp-fts5-starter/releases/tag/v0.1.0) · [launch post](docs/blog/launch.md)).
 
 ## Roadmap to v0.1
 
@@ -107,7 +107,7 @@ See [`docs/architecture.md`](docs/architecture.md) for the design pillars (FTS5-
 - [x] 5. Architecture doc — [`docs/architecture.md`](docs/architecture.md)
 - [x] 6. [`examples/`](examples/) — Claude Code config + raw JSON-RPC over stdio
 - [x] 7. CI workflows (test on push/PR × py3.11/3.12/3.13; publish on release via OIDC)
-- [ ] 8. v0.1.0 release + blog post
+- [x] 8. v0.1.0 release ([PyPI](https://pypi.org/project/mcp-fts5-starter/0.1.0/)) + [launch post](docs/blog/launch.md)
 
 ## License
 

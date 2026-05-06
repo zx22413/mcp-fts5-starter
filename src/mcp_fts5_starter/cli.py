@@ -32,7 +32,25 @@ def main(argv: list[str] | None = None) -> int:
     )
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("serve", help="Run the MCP server (stdio transport).")
+    p_serve = sub.add_parser("serve", help="Run the MCP server.")
+    p_serve.add_argument(
+        "--transport",
+        choices=["stdio", "sse", "streamable-http"],
+        default="stdio",
+        help="Transport. Default 'stdio' for local clients (Claude Code, Claude Desktop). "
+             "Use 'sse' or 'streamable-http' for hosted deployments.",
+    )
+    p_serve.add_argument(
+        "--host",
+        default=None,
+        help="Bind host for sse/streamable-http (default 127.0.0.1).",
+    )
+    p_serve.add_argument(
+        "--port",
+        type=int,
+        default=None,
+        help="Bind port for sse/streamable-http (default 8000).",
+    )
 
     p_index = sub.add_parser("index", help="Incrementally sync a corpus into the index.")
     _add_corpus_args(p_index)
@@ -58,7 +76,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "serve":
         from . import server
 
-        server.main()
+        server.main(transport=args.transport, host=args.host, port=args.port)
         return 0
 
     corpus = _resolve_corpus(getattr(args, "corpus", None))

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- HTTP transports for hosted deployments. `mcp-fts5-starter serve --transport sse|streamable-http [--host H] [--port P]` binds a TCP listener instead of stdio. stdio remains the default for local clients (Claude Code, Claude Desktop). Built on FastMCP's native transport support — no new dependencies.
+
 ## [0.1.0] - 2026-05-07
 
 Initial public release. A drop-in MCP server template with a SQLite FTS5 search backend — extracted, generalized, and stripped down from a closed-source personal knowledge base that's been running this pattern for ~18 months.

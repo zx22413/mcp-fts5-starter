@@ -171,9 +171,30 @@ def _snippet(rel_path: str, query: str, *, lines_around: int = 2, max_matches: i
     return "\n  ...\n".join(snippets)
 
 
-def main() -> None:
-    """Entry point used by ``mcp-fts5-starter serve``."""
-    mcp.run()
+_VALID_TRANSPORTS = ("stdio", "sse", "streamable-http")
+
+
+def main(
+    transport: str = "stdio",
+    *,
+    host: str | None = None,
+    port: int | None = None,
+) -> None:
+    """Entry point used by ``mcp-fts5-starter serve``.
+
+    ``stdio`` (default) is what Claude Code / Claude Desktop spawn locally.
+    ``sse`` and ``streamable-http`` bind a TCP listener — pass ``host`` and
+    ``port`` to override the FastMCP defaults (127.0.0.1:8000).
+    """
+    if transport not in _VALID_TRANSPORTS:
+        raise ValueError(
+            f"unknown transport {transport!r}; expected one of {_VALID_TRANSPORTS}"
+        )
+    if host is not None:
+        mcp.settings.host = host
+    if port is not None:
+        mcp.settings.port = port
+    mcp.run(transport=transport)
 
 
 if __name__ == "__main__":

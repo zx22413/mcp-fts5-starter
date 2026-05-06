@@ -43,19 +43,60 @@ Drop the template into a new repo, point it at a folder, and you have a working 
 
 Both use SQLite FTS5 under the hood, but solve different problems. Need a starter? Here. Need decay logic? Forget-rag.
 
+## Quick demo
+
+The repo ships with a small synthetic corpus under `data/sample/` and a
+one-shot script that builds an index and runs a few representative
+queries against it:
+
+```
+git clone https://github.com/zx22413/mcp-fts5-starter
+cd mcp-fts5-starter
+uv sync                          # or: pip install -e .
+python scripts/build-sample.py
+```
+
+Sample output:
+
+```
+Rebuilding index at data/sample/index.db
+  indexed 7 doc(s): 7 written, 0 failed
+
+Query: 'BM25 weights'
+  - BM25 ranking                concepts/bm25.md
+  - Why not just use a vector   notes/why-not-vector-db.md
+
+Query: 'hybrid search'
+  - Reciprocal rank fusion      concepts/rrf.md
+  - Why not just use a vector   notes/why-not-vector-db.md
+
+Query: 'tokenizer' [doc_type=notes]
+  - Tokenization trade-offs     notes/tokenization-tradeoffs.md
+  - Why not just use a vector   notes/why-not-vector-db.md
+  - Incremental indexing        notes/incremental-indexing.md
+```
+
+To launch the MCP server against the same corpus (e.g. for use from
+Claude Code), point at the directory and the index file:
+
+```
+MCP_FTS5_CORPUS=data/sample MCP_FTS5_DB=data/sample/index.db \
+  mcp-fts5-starter serve
+```
+
 ## Status
 
-🚧 **Alpha — scaffold only.** Source porting and example tools are in progress. See [ROADMAP](#roadmap) below.
+🚧 **Alpha.** Core indexer + 4 MCP tools + sample corpus are in. Architecture doc, MCP-client config example, and CI are still to do — see [ROADMAP](#roadmap) below.
 
 ## Roadmap to v0.1
 
-- [x] 1. Initial scaffold (this commit)
-- [ ] 2. Generic MCP tool layer (`search`, `list`, `read`) — port from brain-knowledge-base, strip domain coupling
-- [ ] 3. Generic FTS5 schema (content + metadata + tags) with BM25 tuning notes
-- [ ] 4. `data/sample.db` one-command demo
+- [x] 1. Initial scaffold
+- [x] 2. Generic MCP tool layer (`search`, `list`, `read`, `index`)
+- [x] 3. Generic FTS5 schema with BM25 tuning notes
+- [x] 4. Sample corpus + one-command demo (`scripts/build-sample.py`)
 - [ ] 5. Architecture doc — "Why MCP + FTS5 beats vector DB for small corpora"
 - [ ] 6. `examples/` — Claude Code config + curl usage
-- [ ] 7. Tests + CI
+- [ ] 7. CI workflows (test + publish)
 - [ ] 8. v0.1.0 release + blog post
 
 ## License

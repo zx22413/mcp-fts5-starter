@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated FTS5 indexes — rebuild via scripts/build-sample.py
+data/**/*.db
+data/**/*.db-wal
+data/**/*.db-shm

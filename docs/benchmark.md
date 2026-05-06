@@ -21,7 +21,7 @@ A reproducible synthetic-corpus benchmark for `mcp-fts5-starter`. The methodolog
 
 ## What the benchmark caught: the per-doc commit bug
 
-This is the kind of finding that pays for the time spent writing a benchmark in the first place. Before the optimization documented in commit `<commit-sha>`, `SearchDB.upsert` called `self.conn.commit()` after every single insert. Each commit triggered a journal-mode fsync — about 30–40 ms on a Windows NTFS volume. For a 10k-doc rebuild that's ~10,000 fsyncs.
+This is the kind of finding that pays for the time spent writing a benchmark in the first place. Before the optimization in [commit `a78fe8b`](https://github.com/zx22413/mcp-fts5-starter/commit/a78fe8b), `SearchDB.upsert` called `self.conn.commit()` after every single insert. Each commit triggered a journal-mode fsync — about 30–40 ms on a Windows NTFS volume. For a 10k-doc rebuild that's ~10,000 fsyncs.
 
 Result on the same hardware:
 

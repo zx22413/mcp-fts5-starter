@@ -40,6 +40,7 @@ Drop the template into a new repo, point it at a folder, and you have a working 
 | Repo | Angle |
 |------|-------|
 | `mcp-fts5-starter` (this) | MCP server **deployment template** — how to wire FTS5 + MCP together |
+| [`mcp-fts5-starter-gemini`](https://github.com/zx22413/mcp-fts5-starter-gemini) | Reference **Gemini embedder** — graduate from BM25 to BM25 + dense retrieval |
 | [`forget-rag`](https://github.com/zx22413/forget-rag) | RAG library with **memory decay** — three-tier forgetting on top of FTS5 |
 
 Both use SQLite FTS5 under the hood, but solve different problems. Need a starter? Here. Need decay logic? Forget-rag.
@@ -103,7 +104,7 @@ mcp-fts5-starter serve --transport sse --host 0.0.0.0 --port 8765
 
 ## Status
 
-✅ **v0.1.0 shipped** ([PyPI](https://pypi.org/project/mcp-fts5-starter/) · [GitHub Release](https://github.com/zx22413/mcp-fts5-starter/releases/tag/v0.1.0) · [launch post](docs/blog/launch.md)).
+✅ **v0.2.0 shipped** ([PyPI](https://pypi.org/project/mcp-fts5-starter/) · [GitHub Release](https://github.com/zx22413/mcp-fts5-starter/releases/tag/v0.2.0) · [launch post](docs/blog/launch.md)) — adds HTTP transports, a real benchmark, and ~2× faster ingest.
 
 ## Roadmap to v0.1
 

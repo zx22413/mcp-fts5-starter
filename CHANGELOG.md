@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-08
+
 ### Added
 
 - HTTP transports for hosted deployments. `mcp-fts5-starter serve --transport sse|streamable-http [--host H] [--port P]` binds a TCP listener instead of stdio. stdio remains the default for local clients (Claude Code, Claude Desktop). Built on FastMCP's native transport support — no new dependencies.
@@ -81,5 +83,6 @@ Initial public release. A drop-in MCP server template with a SQLite FTS5 search 
 - **HTTP+SSE transport deferred.** stdio works for local Claude Code / Claude Desktop integrations and that's the dominant use case. SSE can be added without changing the index layer.
 - **No real benchmark numbers in the architecture doc** — fabricated benchmarks mislead more than help. Real numbers will land alongside a reproducible fixture in a future minor.
 
-[Unreleased]: https://github.com/zx22413/mcp-fts5-starter/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/zx22413/mcp-fts5-starter/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/zx22413/mcp-fts5-starter/releases/tag/v0.2.0
 [0.1.0]: https://github.com/zx22413/mcp-fts5-starter/releases/tag/v0.1.0

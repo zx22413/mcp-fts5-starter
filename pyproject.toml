@@ -1,6 +1,6 @@
 [project]
 name = "mcp-fts5-starter"
-version = "0.1.0"
+version = "0.2.0"
 description = "Drop-in MCP server template with SQLite FTS5 search backend. ~300 lines, no vector DB, no embedding API, runs on a Pi."
 readme = "README.md"
 license = { text = "MIT" }
